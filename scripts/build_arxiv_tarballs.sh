@@ -19,8 +19,14 @@ echo ""
 
 # Verificar LaTeX disponível
 if ! command -v pdflatex &> /dev/null; then
-    echo "⚠️  LaTeX não encontrado. Ignorando compilação."
-    echo "   (Tarballs serão criados apenas com fontes TeX)"
+    echo "⚠️  LaTeX não encontrado."
+    if [ "${ALLOW_SOURCE_ONLY}" = "1" ]; then
+        echo "   ALLOW_SOURCE_ONLY=1 set: criando tarballs apenas com fontes (não verificados)"
+    else
+        echo "   Para permitir tarballs apenas com fontes exporte: ALLOW_SOURCE_ONLY=1"
+        echo "   Abortando para evitar artefatos não verificados."
+        exit 2
+    fi
 fi
 
 # Array para armazenar hashes
@@ -37,11 +43,26 @@ for i in "${!PAPERS[@]}"; do
     
     echo "📦 Processando: $PAPER_DIR"
     
-    # Se LaTeX disponível, compilar
+    # Se LaTeX disponível, compilar (falhar se compilação falhar)
     if command -v pdflatex &> /dev/null && [ -f "$PAPER_PATH/paper.tex" ]; then
         cd "$PAPER_PATH"
-        echo "   Compilando TeX..."
-        pdflatex -interaction=nonstopmode paper.tex > /dev/null 2>&1 || true
+        echo "   Compilando TeX (preferindo latexmk)..."
+        if command -v latexmk &> /dev/null; then
+            latexmk -pdf -silent paper.tex
+        else
+            pdflatex -interaction=nonstopmode paper.tex
+            # tentar BibTeX se houver .aux/bib
+            if [ -f "paper.aux" ]; then
+                bibtex paper || true
+            fi
+            pdflatex -interaction=nonstopmode paper.tex
+            pdflatex -interaction=nonstopmode paper.tex
+        fi
+
+        if [ ! -f "paper.pdf" ]; then
+            echo "   ❌ Compilação falhou para $PAPER_DIR"
+            exit 1
+        fi
         cd ../../..
     fi
     
@@ -49,6 +70,7 @@ for i in "${!PAPERS[@]}"; do
     PACKAGE_NAME="$PAPER_DIR-v1"
     TARBALL="$DIST_DIR/$PACKAGE_NAME.tar.gz"
     
+    echo "   Empacotando arquivos fonte (excluindo artefatos)..."
     cd "$PAPER_PATH"
     tar --exclude='.git' \
         --exclude='.DS_Store' \
@@ -61,9 +83,8 @@ for i in "${!PAPERS[@]}"; do
         --exclude='build' \
         --exclude='.vscode' \
         --exclude='__pycache__' \
-        -czf "../../$TARBALL" \
-        paper.tex *.bib 2>/dev/null || true
-    
+        -czf "../../$TARBALL" .
+
     cd ../../..
     
     # Calcular SHA256
