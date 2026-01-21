@@ -85,7 +85,8 @@ Isso **não é aceitável** no padrão PBSE/ledger. O arXiv compila. Sem compila
   - PDF compilado;
   - run ID/log associado.
 
----
+**Não deve conter**:
+- `*.aux`, `*.log`, `*.synctex.gz`, `*.fls`, `*.fdb_latexmk`
 
 ## 5. Correção cirúrgica no `tar` (evitar arquivo vazio)
 
@@ -142,7 +143,8 @@ O que é útil e antifrágil:
 
 Autopoiese útil = manutenção automática de invariantes, **não** “daemon místico”.
 
----
+### B) Baixar artifacts (`dist/`)
+- Deve conter tarballs + `SHA256SUMS.txt`.
 
 ## 9. Sistema inteligente, eficaz e antifrágil (o que falta para ficar real)
 
@@ -241,7 +243,18 @@ sudo apt-get install -y \
 
 Ainda assim, a **prova forte** é a CI pública.
 
----
+Se quiser builds locais no Codex (além de CI):
+- Instale TeX no script de configuração (enquanto há internet):
+
+```bash
+sudo apt-get update
+sudo apt-get install -y \
+  latexmk \
+  texlive-latex-recommended \
+  texlive-latex-extra \
+  texlive-fonts-recommended \
+  texlive-bibtex-extra
+```
 
 ## 14. Conclusão (curta e cruel)
 
