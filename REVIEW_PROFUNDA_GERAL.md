@@ -261,6 +261,10 @@ Checklist de saneamento antes de finalizar:
 
 - Guia arXiv sobre envio de TeX: https://arxiv.org/help/submit_tex
 - Exemplos e repositórios em TeX (GitHub Search): https://github.com/search?q=LaTeX+language%3ATeX&type=repositories&l=TeX
+- Repositório (pyexperiment): https://github.com/duerrp/pyexperiment
+- Repositório (mirror pyexperiment): https://github.com/orgTestCodacy11KRepos110MB/repo-732-pyexperiment
+- Repositório (arxiv-latex-cleaner): https://github.com/google-research/arxiv-latex-cleaner
+- Repositório (latex-arxiv-SKILL): https://github.com/renocrypt/latex-arxiv-SKILL
 
 ---
 
