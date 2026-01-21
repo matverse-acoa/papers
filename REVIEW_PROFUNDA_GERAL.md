@@ -85,8 +85,7 @@ Isso **não é aceitável** no padrão PBSE/ledger. O arXiv compila. Sem compila
   - PDF compilado;
   - run ID/log associado.
 
-**Não deve conter**:
-- `*.aux`, `*.log`, `*.synctex.gz`, `*.fls`, `*.fdb_latexmk`
+---
 
 ## 5. Correção cirúrgica no `tar` (evitar arquivo vazio)
 
@@ -133,7 +132,12 @@ sha256sum -c dist/SHA256SUMS.txt
 - Upload manual do tarball.
 - O repo é a prova pública; o arXiv é o registro editorial.
 
----
+### 9.1 Loop de feedback fechado (autopoiese real)
+Um sistema autopoietico não “se declara pronto”; ele **se autocorrige** com base em sinais reais:
+- **Sensor**: resultados do CI (logs + artifacts + hashes).
+- **Memória**: `evidence/index.json` com links rastreáveis (run URL / IDs).
+- **Ação**: scripts que atualizam o registry **só** quando há prova.
+- **Regra dura**: se qualquer gate falha, o estado não avança.
 
 ## 8. Autopoiese (sem autoengano)
 
@@ -143,8 +147,7 @@ O que é útil e antifrágil:
 
 Autopoiese útil = manutenção automática de invariantes, **não** “daemon místico”.
 
-### B) Baixar artifacts (`dist/`)
-- Deve conter tarballs + `SHA256SUMS.txt`.
+---
 
 ## 9. Sistema inteligente, eficaz e antifrágil (o que falta para ficar real)
 
@@ -216,7 +219,21 @@ Isso transforma o repositório em um **sistema inteligente, eficaz, autopoietico
 
 ---
 
-## 12. O que **não** é aceitável afirmar sem prova
+## 12. Submissões arXiv (estado e correção imediata)
+
+Se houver uma submissão **incompleta** no painel do arXiv (ex.: `submit/6985500`), trate como **estado pendente**:
+- **Não** declare “submitted” até que o upload finalize e o arXiv gere o ID público (`arxiv.org/abs/…`).
+- Complete o upload com **source TeX** e todos os arquivos requeridos (evite PDF-only).
+- Depois de concluir, copie o ID público e registre no `evidence/index.json`.
+
+Checklist de saneamento antes de finalizar:
+- Todas as referências resolvidas (sem `?` no PDF).
+- `paper.bbl` presente no tarball, se houver bibliografia.
+- Tarball sem arquivos auxiliares (`*.aux`, `*.log`, `*.synctex.gz`, etc.).
+
+Qualquer erro no CI, envie o link do run que eu debugo em < 1 min.
+
+## 13. O que **não** é aceitável afirmar sem prova
 
 - “arXiv ID obtido” sem link público verificável.
 - “LaTeX compliance confirmado” sem log de compilação.
@@ -226,7 +243,7 @@ Isso transforma o repositório em um **sistema inteligente, eficaz, autopoietico
 
 ---
 
-## 13. Para fazer tudo via Codex (de forma correta)
+## 14. Para fazer tudo via Codex (de forma correta)
 
 Se quiser builds locais no Codex (além de CI):
 - Instale TeX no script de configuração (enquanto há internet):
@@ -243,20 +260,9 @@ sudo apt-get install -y \
 
 Ainda assim, a **prova forte** é a CI pública.
 
-Se quiser builds locais no Codex (além de CI):
-- Instale TeX no script de configuração (enquanto há internet):
+---
 
-```bash
-sudo apt-get update
-sudo apt-get install -y \
-  latexmk \
-  texlive-latex-recommended \
-  texlive-latex-extra \
-  texlive-fonts-recommended \
-  texlive-bibtex-extra
-```
-
-## 14. Conclusão (curta e cruel)
+## 15. Conclusão (curta e cruel)
 
 Seu plano está correto, mas o pipeline precisa ser **prova-first**:  
 CI compila → artifacts existem → hashes conferem → evidence registra → só então é “arXiv-safe”.
