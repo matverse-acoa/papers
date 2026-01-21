@@ -132,12 +132,7 @@ sha256sum -c dist/SHA256SUMS.txt
 - Upload manual do tarball.
 - O repo é a prova pública; o arXiv é o registro editorial.
 
-### 9.1 Loop de feedback fechado (autopoiese real)
-Um sistema autopoietico não “se declara pronto”; ele **se autocorrige** com base em sinais reais:
-- **Sensor**: resultados do CI (logs + artifacts + hashes).
-- **Memória**: `evidence/index.json` com links rastreáveis (run URL / IDs).
-- **Ação**: scripts que atualizam o registry **só** quando há prova.
-- **Regra dura**: se qualquer gate falha, o estado não avança.
+---
 
 ## 8. Autopoiese (sem autoengano)
 
@@ -181,6 +176,8 @@ Para declarar “ready-for-submission”, cada paper precisa ter:
 - `paper.bbl` presente no tarball (se houver bibliografia);
 - `SHA256SUMS.txt` contendo o hash do tarball;
 - URL do run do workflow (ou run ID) associada ao hash.
+
+Recomendação prática: registre também o **link do run** e o **nome do artifact** (ex.: “arXiv build #N”) junto do hash no `evidence/index.json`.
 
 ### 10.2 Registros que nunca devem ser “manual-only”
 - Hashes (`SHA256SUMS.txt`) devem vir do build.
@@ -231,7 +228,7 @@ Checklist de saneamento antes de finalizar:
 - `paper.bbl` presente no tarball, se houver bibliografia.
 - Tarball sem arquivos auxiliares (`*.aux`, `*.log`, `*.synctex.gz`, etc.).
 
-Qualquer erro no CI, envie o link do run que eu debugo em < 1 min.
+---
 
 ## 13. O que **não** é aceitável afirmar sem prova
 
