@@ -1,0 +1,38 @@
+name: arXiv build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            latexmk \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-bibtex-extra
+
+      - name: Make build script executable
+        run: |
+          chmod +x scripts/build_arxiv_tarballs.sh || true
+
+      - name: Build arXiv tarballs
+        run: |
+          ./scripts/build_arxiv_tarballs.sh
+
+      - name: Upload tarballs and checksums
+        uses: actions/upload-artifact@v4
+        with:
+          name: arxiv-tarballs
+          path: |
+            dist/
