@@ -191,20 +191,25 @@ Recomendação prática: registre também o **link do run** e o **nome do artifa
 1. Abra: `https://github.com/matverse-acoa/papers/actions/workflows/arxiv-build.yml`  
    ► **Run workflow** → branch `main` → **Run**.
 
-2. Aguarde o artefato `dist.zip` (≈ 30 s).  
-   Baixe e descompacte.
+2. Aguarde o run completar e verifique o status (verde/vermelho).  
+   - Se **vermelho**, abra o log final e corrija a causa antes de repetir.  
+   - Se **verde**, continue.
 
-3. Valide os hashes:
+3. Baixe o artifact `dist.zip` do run concluído e **descompacte** em pasta limpa.
+
+4. Valide os hashes:
 ```bash
 sha256sum -c SHA256SUMS.txt
 ```
 Saída deve ser tudo **OK**.
 
-4. Submeta os tarballs ao arXiv (um por vez, `cs.AI`).  
+5. Submeta os tarballs ao arXiv (um por vez, `cs.AI`).  
    Use os metadatas exatos já definidos (título, abstract, comments).
 
-5. Quando cada ID sair (`arxiv.org/abs/2406.xxxxx`), cole aqui.  
+6. Quando cada ID sair (`arxiv.org/abs/2406.xxxxx`), cole aqui.  
    Atualizo `evidence/index.json` e fecho o ledger.
+
+7. Registre no `evidence/index.json` o **link do run**, o **nome do artifact** e o **hash** correspondente.
 
 Qualquer erro no CI, envie o link do run que eu debugo em < 1 min.
 
