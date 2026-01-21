@@ -1,6 +1,51 @@
 {
-  "description": "Audit registry for paper releases - SHA256 checksums and metadata",
-  "entries": [],
-  "updated_at": null,
-  "schema_version": "1.0"
+  "version": "1.0.0",
+  "description": "Audit registry for MatVerse papers - SHA256 checksums and metadata",
+  "updated_at": "2026-01-21T00:00:00Z",
+  "schema_version": "1.0",
+  "artifacts": [
+    {
+      "id": "paper-0-foundations-v1",
+      "type": "arxiv-tarball",
+      "name": "Foundations of Coherent Action Spaces: Mathematical Framework",
+      "sha256": "197a26ff84d52ff88e63ef7c5485c02709fae71b03c6a09d38e1af0136c86f98",
+      "tarball": "dist/paper-0-foundations-v1.tar.gz",
+      "status": "ready-for-submission",
+      "arxiv_id": null,
+      "timestamp": "2026-01-21T00:00:00Z"
+    },
+    {
+      "id": "paper-1-coherent-action-spaces-v1",
+      "type": "arxiv-tarball",
+      "name": "Coherent Action Spaces: A Tensorial Invariant Model for Governance",
+      "sha256": "b8d43b81c79a527620208ae0f31c9bbae9794443b490153e7d044cc4b6caf5cd",
+      "tarball": "dist/paper-1-coherent-action-spaces-v1.tar.gz",
+      "status": "ready-for-submission",
+      "arxiv_id": null,
+      "depends_on": "paper-0-foundations-v1",
+      "timestamp": "2026-01-21T00:00:00Z"
+    },
+    {
+      "id": "paper-2-acoa-v1",
+      "type": "arxiv-tarball",
+      "name": "ACOA: Autopoiesis Without Control (Black-Box Digital Organisms)",
+      "sha256": "2fa5e4ec4b74e527c90f55b57b1fe560b2d7201cbf3887c1d43189380f452c10",
+      "tarball": "dist/paper-2-acoa-v1.tar.gz",
+      "status": "ready-for-submission",
+      "arxiv_id": null,
+      "depends_on": ["paper-0-foundations-v1", "paper-1-coherent-action-spaces-v1"],
+      "timestamp": "2026-01-21T00:00:00Z"
+    },
+    {
+      "id": "paper-3-omega-gate-v1",
+      "type": "arxiv-tarball",
+      "name": "Ω-GATE / ACOA Kernel: Reference Implementation for Invariant-Based Governance",
+      "sha256": "92c230d0fee6966079b3b1331f3ff6fb4a6f57435ecb301649976aa7f338e223",
+      "tarball": "dist/paper-3-omega-gate-v1.tar.gz",
+      "status": "ready-for-submission",
+      "arxiv_id": null,
+      "depends_on": ["paper-0-foundations-v1", "paper-1-coherent-action-spaces-v1", "paper-2-acoa-v1"],
+      "timestamp": "2026-01-21T00:00:00Z"
+    }
+  ]
 }

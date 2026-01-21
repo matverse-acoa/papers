@@ -1,0 +1,4 @@
+197a26ff84d52ff88e63ef7c5485c02709fae71b03c6a09d38e1af0136c86f98  paper-0-foundations-v1.tar.gz
+b8d43b81c79a527620208ae0f31c9bbae9794443b490153e7d044cc4b6caf5cd  paper-1-coherent-action-spaces-v1.tar.gz
+2fa5e4ec4b74e527c90f55b57b1fe560b2d7201cbf3887c1d43189380f452c10  paper-2-acoa-v1.tar.gz
+92c230d0fee6966079b3b1331f3ff6fb4a6f57435ecb301649976aa7f338e223  paper-3-omega-gate-v1.tar.gz
