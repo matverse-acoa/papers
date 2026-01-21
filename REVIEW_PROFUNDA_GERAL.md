@@ -85,7 +85,8 @@ Isso **não é aceitável** no padrão PBSE/ledger. O arXiv compila. Sem compila
   - PDF compilado;
   - run ID/log associado.
 
----
+**Não deve conter**:
+- `*.aux`, `*.log`, `*.synctex.gz`, `*.fls`, `*.fdb_latexmk`
 
 ## 5. Correção cirúrgica no `tar` (evitar arquivo vazio)
 
@@ -142,9 +143,80 @@ O que é útil e antifrágil:
 
 Autopoiese útil = manutenção automática de invariantes, **não** “daemon místico”.
 
+### B) Baixar artifacts (`dist/`)
+- Deve conter tarballs + `SHA256SUMS.txt`.
+
+## 9. Sistema inteligente, eficaz e antifrágil (o que falta para ficar real)
+
+### 9.1 Loop de feedback fechado (autopoiese real)
+Um sistema autopoietico não “se declara pronto”; ele **se autocorrige** com base em sinais reais:
+- **Sensor**: resultados do CI (logs + artifacts + hashes).
+- **Memória**: `evidence/index.json` com links rastreáveis (run URL / IDs).
+- **Ação**: scripts que atualizam o registry **só** quando há prova.
+- **Regra dura**: se qualquer gate falha, o estado não avança.
+
+### 9.2 Invariantes obrigatórios (antifragilidade)
+Defina invariantes que **sempre** precisam permanecer verdadeiras:
+- Cada tarball publicado tem hash verificável e run associado.
+- Cada paper “ready” tem PDF compilado **sem erro**.
+- `evidence/index.json` é monotônico (não regride status).
+- Artefatos são reproduzíveis (mesma entrada → mesmo hash, quando o runner é equivalente).
+
+### 9.3 Estratégia de “falha útil”
+Antifragilidade exige que a falha gere valor:
+- Quando o build falha, registre o motivo (log) e **aprenda**: crie um ticket local com causa.
+- Se o runner muda (ex.: TeX Live), registre a versão do ambiente em `evidence/`.
+- Se o arXiv rejeitar, capture o relatório e ajuste o pipeline (é uma prova, não um erro escondido).
+
 ---
 
-## 9. O que **não** é aceitável afirmar sem prova
+## 10. Controles objetivos (o mínimo para ser auditável)
+
+### 10.1 Evidências mínimas por paper
+Para declarar “ready-for-submission”, cada paper precisa ter:
+- `paper.pdf` gerado em CI;
+- `paper.bbl` presente no tarball (se houver bibliografia);
+- `SHA256SUMS.txt` contendo o hash do tarball;
+- URL do run do workflow (ou run ID) associada ao hash.
+
+### 10.2 Registros que nunca devem ser “manual-only”
+- Hashes (`SHA256SUMS.txt`) devem vir do build.
+- Status “ready-for-submission” deve vir de gate automático.
+- Logs de compilação devem ser preservados como artifacts.
+
+---
+
+## 11. Plano direto (sem rodeios)
+
+1. Abra: `https://github.com/matverse-acoa/papers/actions/workflows/arxiv-build.yml`  
+   ► **Run workflow** → branch `main` → **Run**.
+
+2. Aguarde o artefato `dist.zip` (≈ 30 s).  
+   Baixe e descompacte.
+
+3. Valide os hashes:
+```bash
+sha256sum -c SHA256SUMS.txt
+```
+Saída deve ser tudo **OK**.
+
+4. Submeta os tarballs ao arXiv (um por vez, `cs.AI`).  
+   Use os metadatas exatos já definidos (título, abstract, comments).
+
+5. Quando cada ID sair (`arxiv.org/abs/2406.xxxxx`), cole aqui.  
+   Atualizo `evidence/index.json` e fecho o ledger.
+
+Qualquer erro no CI, envie o link do run que eu debugo em < 1 min.
+
+Isso transforma o repositório em um **sistema inteligente, eficaz, autopoietico e antifrágil real**, porque:
+- só avança com prova;
+- registra a origem dos fatos;
+- melhora com falhas documentadas;
+- evita autoengano.
+
+---
+
+## 12. O que **não** é aceitável afirmar sem prova
 
 - “arXiv ID obtido” sem link público verificável.
 - “LaTeX compliance confirmado” sem log de compilação.
@@ -154,7 +226,7 @@ Autopoiese útil = manutenção automática de invariantes, **não** “daemon m
 
 ---
 
-## 10. Para fazer tudo via Codex (de forma correta)
+## 13. Para fazer tudo via Codex (de forma correta)
 
 Se quiser builds locais no Codex (além de CI):
 - Instale TeX no script de configuração (enquanto há internet):
@@ -171,11 +243,26 @@ sudo apt-get install -y \
 
 Ainda assim, a **prova forte** é a CI pública.
 
----
+Se quiser builds locais no Codex (além de CI):
+- Instale TeX no script de configuração (enquanto há internet):
 
-## 11. Conclusão (curta e cruel)
+```bash
+sudo apt-get update
+sudo apt-get install -y \
+  latexmk \
+  texlive-latex-recommended \
+  texlive-latex-extra \
+  texlive-fonts-recommended \
+  texlive-bibtex-extra
+```
+
+## 14. Conclusão (curta e cruel)
 
 Seu plano está correto, mas o pipeline precisa ser **prova-first**:  
 CI compila → artifacts existem → hashes conferem → evidence registra → só então é “arXiv-safe”.
 
 Se você rodar o workflow pela UI e trouxer o link do run (ou o log final / artifacts), eu valido o que está realmente **subível**, sem especulação.
+
+**Regra operacional**: qualquer declaração de prontidão, conformidade ou submissão é **inválida** se não estiver vinculada a um run de CI bem-sucedido com logs e artifacts anexos.
+
+**Fonte da verdade**: texto **não** valida estado. Logs + artifacts validam estado. Sem logs/artifacts, o estado é **desconhecido**.
