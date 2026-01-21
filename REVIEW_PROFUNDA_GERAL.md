@@ -191,7 +191,7 @@ Recomendação prática: registre também o **link do run** e o **nome do artifa
 1. Abra: `https://github.com/matverse-acoa/papers/actions/workflows/arxiv-build.yml`  
    ► **Run workflow** → branch `main` → **Run**.
 
-2. Aguarde o run completar e verifique o status (verde/vermelho).  
+2. Aguarde o run completar e confirme **status** e **commit** (o run deve corresponder ao commit que gerou o artifact).  
    - Se **vermelho**, abra o log final e corrija a causa antes de repetir.  
    - Se **verde**, continue.
 
@@ -211,6 +211,17 @@ Saída deve ser tudo **OK**.
 
 7. Registre no `evidence/index.json` o **link do run**, o **nome do artifact** e o **hash** correspondente.
 
+8. (Opcional, recomendado) Se for versionar um lote pronto, crie **tag assinada** após CI verde:
+```bash
+git tag -s v1.0.0
+git tag -v v1.0.0
+```
+
+9. Execute o monitor autopoietico local para validar integridade e dependências:
+```bash
+python3 scripts/autopoietic_monitor.py
+```
+
 Qualquer erro no CI, envie o link do run que eu debugo em < 1 min.
 
 Isso transforma o repositório em um **sistema inteligente, eficaz, autopoietico e antifrágil real**, porque:
@@ -225,7 +236,8 @@ Isso transforma o repositório em um **sistema inteligente, eficaz, autopoietico
 
 Se houver uma submissão **incompleta** no painel do arXiv (ex.: `submit/6985500`), trate como **estado pendente**:
 - **Não** declare “submitted” até que o upload finalize e o arXiv gere o ID público (`arxiv.org/abs/…`).
-- Complete o upload com **source TeX** e todos os arquivos requeridos (evite PDF-only). O arXiv **requer TeX quando possível** e pode recusar PDFs gerados a partir de TeX se o source não for enviado.
+- Complete o upload com **source TeX** e todos os arquivos requeridos (evite PDF-only). O arXiv **requer TeX quando possível** e pode recusar PDFs gerados a partir de TeX se o source não for enviado.  
+  Referência: https://arxiv.org/help/submit_tex
 - Depois de concluir, copie o ID público e registre no `evidence/index.json`.
 
 Checklist de saneamento antes de finalizar:
@@ -245,7 +257,14 @@ Checklist de saneamento antes de finalizar:
 
 ---
 
-## 14. Para fazer tudo via Codex (de forma correta)
+## 14. Referências úteis (submissão e TeX)
+
+- Guia arXiv sobre envio de TeX: https://arxiv.org/help/submit_tex
+- Exemplos e repositórios em TeX (GitHub Search): https://github.com/search?q=LaTeX+language%3ATeX&type=repositories&l=TeX
+
+---
+
+## 15. Para fazer tudo via Codex (de forma correta)
 
 Se quiser builds locais no Codex (além de CI):
 - Instale TeX no script de configuração (enquanto há internet):
@@ -264,7 +283,7 @@ Ainda assim, a **prova forte** é a CI pública.
 
 ---
 
-## 15. Conclusão (curta e cruel)
+## 16. Conclusão (curta e cruel)
 
 Seu plano está correto, mas o pipeline precisa ser **prova-first**:  
 CI compila → artifacts existem → hashes conferem → evidence registra → só então é “arXiv-safe”.
