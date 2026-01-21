@@ -4,6 +4,8 @@
 
 set -e
 
+ROOT_DIR="$(pwd)"
+
 PAPERS=(
     "paper-0-foundations"
     "paper-1-coherent-action-spaces"
@@ -11,7 +13,7 @@ PAPERS=(
     "paper-3-omega-gate"
 )
 
-DIST_DIR="dist"
+DIST_DIR="$ROOT_DIR/dist"
 mkdir -p "$DIST_DIR"
 
 echo "🚀 Building arXiv tarballs for all papers"
@@ -34,7 +36,7 @@ declare -a HASHES
 
 for i in "${!PAPERS[@]}"; do
     PAPER_DIR="${PAPERS[$i]}"
-    PAPER_PATH="papers/$PAPER_DIR"
+    PAPER_PATH="$ROOT_DIR/papers/$PAPER_DIR"
     
     if [ ! -d "$PAPER_PATH" ]; then
         echo "⚠️  Pulando: $PAPER_PATH não encontrado"
@@ -45,7 +47,7 @@ for i in "${!PAPERS[@]}"; do
     
     # Se LaTeX disponível, compilar (falhar se compilação falhar)
     if command -v pdflatex &> /dev/null && [ -f "$PAPER_PATH/paper.tex" ]; then
-        cd "$PAPER_PATH"
+        pushd "$PAPER_PATH" > /dev/null
         echo "   Compilando TeX (preferindo latexmk)..."
         if command -v latexmk &> /dev/null; then
             latexmk -pdf -silent paper.tex
@@ -63,7 +65,7 @@ for i in "${!PAPERS[@]}"; do
             echo "   ❌ Compilação falhou para $PAPER_DIR"
             exit 1
         fi
-        cd ../../..
+        popd > /dev/null
     fi
     
     # Criar tarball arXiv-safe
@@ -71,7 +73,6 @@ for i in "${!PAPERS[@]}"; do
     TARBALL="$DIST_DIR/$PACKAGE_NAME.tar.gz"
     
     echo "   Empacotando arquivos fonte (excluindo artefatos)..."
-    cd "$PAPER_PATH"
     tar --exclude='.git' \
         --exclude='.DS_Store' \
         --exclude='*.log' \
@@ -83,9 +84,8 @@ for i in "${!PAPERS[@]}"; do
         --exclude='build' \
         --exclude='.vscode' \
         --exclude='__pycache__' \
-        -czf "../../$TARBALL" .
-
-    cd ../../..
+        -czf "$TARBALL" \
+        -C "$PAPER_PATH" .
     
     # Calcular SHA256
     if [ -f "$TARBALL" ]; then

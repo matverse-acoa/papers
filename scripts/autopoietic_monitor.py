@@ -8,12 +8,14 @@ import json
 import hashlib
 import sys
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 class MatverseAutopoieticMonitor:
     """Self-organizing system that validates MatVerse ecosystem"""
-    
-    def __init__(self, root_dir="/workspaces/papers"):
+
+    def __init__(self, root_dir: str | None = None):
+        if root_dir is None:
+            root_dir = str(Path(__file__).resolve().parents[1])
         self.root = Path(root_dir)
         self.evidence_file = self.root / "evidence" / "index.json"
         self.dist_dir = self.root / "dist"
@@ -132,7 +134,7 @@ class MatverseAutopoieticMonitor:
             return 1
         else:
             print("✅ All systems operational!")
-            print(f"   Timestamp: {datetime.utcnow().isoformat()}Z")
+            print(f"   Timestamp: {datetime.now(timezone.utc).isoformat()}")
             print(f"   Papers ready: 4/4")
             print(f"   Evidence registry: verified")
             print(f"   Dependencies: valid")
@@ -140,6 +142,7 @@ class MatverseAutopoieticMonitor:
             return 0
 
 if __name__ == "__main__":
-    monitor = MatverseAutopoieticMonitor()
+    root_dir = sys.argv[1] if len(sys.argv) > 1 else None
+    monitor = MatverseAutopoieticMonitor(root_dir=root_dir)
     exit_code = monitor.generate_report()
     sys.exit(exit_code)
