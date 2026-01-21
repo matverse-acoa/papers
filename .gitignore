@@ -1,0 +1,43 @@
+# Ignore common files
+.DS_Store
+.vscode
+*.swp
+*.swo
+*~
+
+# LaTeX build artifacts
+*.log
+*.aux
+*.fls
+*.fdb_latexmk
+*.out
+*.toc
+*.lot
+*.lof
+*.ilg
+*.ind
+*.idx
+*.glo
+*.bbl
+*.blg
+*.fls
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+
+# Temporary files
+releases/*.tar.gz
+releases/*.zip
+*.tmp
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# Local env
+.env
+.env.local

@@ -1,0 +1,85 @@
+name: Package for arXiv
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'papers/**'
+      - 'scripts/**'
+      - '.github/workflows/arxiv-pack.yml'
+  workflow_dispatch:
+    inputs:
+      paper_dir:
+        description: 'Paper directory (e.g., paper-1-coherent-action-spaces)'
+        required: true
+      version:
+        description: 'Version tag (e.g., v1)'
+        required: false
+        default: 'v1'
+
+jobs:
+  build-and-package:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-full python3
+
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh
+
+      - name: Detect changed papers
+        id: detect
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "paper_dir=${{ github.event.inputs.paper_dir }}" >> $GITHUB_OUTPUT
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            # Detect from git diff
+            CHANGED=$(git diff --name-only HEAD~1 HEAD | grep 'papers/' | cut -d/ -f2 | sort -u | head -1)
+            if [ -z "$CHANGED" ]; then
+              CHANGED="paper-1-coherent-action-spaces"
+            fi
+            echo "paper_dir=$CHANGED" >> $GITHUB_OUTPUT
+            echo "version=v$(date +%Y%m%d-%H%M%S)" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build Paper
+        run: ./scripts/build_paper.sh ${{ steps.detect.outputs.paper_dir }}
+
+      - name: Package for arXiv
+        run: ./scripts/package_arxiv.sh ${{ steps.detect.outputs.paper_dir }} ${{ steps.detect.outputs.version }}
+
+      - name: Update evidence index
+        run: |
+          python3 scripts/sha256_update.py releases/$(ls -t releases | head -1)
+
+      - name: Commit and push changes
+        if: success()
+        run: |
+          git config user.email "ci@matverse-acoa.local"
+          git config user.name "CI Bot"
+          git add evidence/index.json
+          git commit -m "chore: update evidence index after arxiv-pack [${{ steps.detect.outputs.paper_dir }}]" || true
+          git push origin main
+
+      - name: Create Release
+        if: success()
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.detect.outputs.paper_dir }}-${{ steps.detect.outputs.version }}
+          name: ${{ steps.detect.outputs.paper_dir }} ${{ steps.detect.outputs.version }}
+          files: releases/*.tar.gz
+          body: |
+            **Paper:** ${{ steps.detect.outputs.paper_dir }}
+            **Version:** ${{ steps.detect.outputs.version }}
+            
+            SHA256 checksum available in `evidence/index.json`
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
