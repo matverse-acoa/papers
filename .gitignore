@@ -33,6 +33,7 @@ __pycache__/
 releases/*.tar.gz
 releases/*.zip
 *.tmp
+dist/*.tar.gz
 
 # macOS
 .AppleDouble

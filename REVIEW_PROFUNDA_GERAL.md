@@ -261,6 +261,10 @@ Checklist de saneamento antes de finalizar:
 
 - Guia arXiv sobre envio de TeX: https://arxiv.org/help/submit_tex
 - Exemplos e repositórios em TeX (GitHub Search): https://github.com/search?q=LaTeX+language%3ATeX&type=repositories&l=TeX
+- Repositório (pyexperiment): https://github.com/duerrp/pyexperiment
+- Repositório (mirror pyexperiment): https://github.com/orgTestCodacy11KRepos110MB/repo-732-pyexperiment
+- Repositório (arxiv-latex-cleaner): https://github.com/google-research/arxiv-latex-cleaner
+- Repositório (latex-arxiv-SKILL): https://github.com/renocrypt/latex-arxiv-SKILL
 
 ---
 
@@ -293,3 +297,7 @@ Se você rodar o workflow pela UI e trouxer o link do run (ou o log final / arti
 **Regra operacional**: qualquer declaração de prontidão, conformidade ou submissão é **inválida** se não estiver vinculada a um run de CI bem-sucedido com logs e artifacts anexos.
 
 **Fonte da verdade**: texto **não** valida estado. Logs + artifacts validam estado. Sem logs/artifacts, o estado é **desconhecido**.
+
+---
+
+**Assinatura**: Mateus Alves Arêas
