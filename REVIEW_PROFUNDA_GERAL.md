@@ -207,7 +207,7 @@ Saída deve ser tudo **OK**.
    Use os metadatas exatos já definidos (título, abstract, comments).
 
 6. Quando cada ID sair (`arxiv.org/abs/2406.xxxxx`), cole aqui.  
-   Atualizo `evidence/index.json` e fecho o ledger.
+   Atualizo `evidence/index.json` **ou fecho o ledger final de submissão**.
 
 7. Registre no `evidence/index.json` o **link do run**, o **nome do artifact** e o **hash** correspondente.
 
@@ -261,10 +261,6 @@ Checklist de saneamento antes de finalizar:
 
 - Guia arXiv sobre envio de TeX: https://arxiv.org/help/submit_tex
 - Exemplos e repositórios em TeX (GitHub Search): https://github.com/search?q=LaTeX+language%3ATeX&type=repositories&l=TeX
-- Repositório (pyexperiment): https://github.com/duerrp/pyexperiment
-- Repositório (mirror pyexperiment): https://github.com/orgTestCodacy11KRepos110MB/repo-732-pyexperiment
-- Repositório (arxiv-latex-cleaner): https://github.com/google-research/arxiv-latex-cleaner
-- Repositório (latex-arxiv-SKILL): https://github.com/renocrypt/latex-arxiv-SKILL
 
 ---
 
