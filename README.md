@@ -15,6 +15,37 @@ arXiv LaTeX Compliance: ✅ Verified
 
 ---
 
+## 🧭 Resumo seco e direto (tese central + função lógica)
+
+**Paper 0 — Foundations of Antifragile Quantum-Semantic Systems**  
+Tese central: Coerência não é consenso nem interpretação: é convergência mensurável. E falha é dado, não exceção.  
+Função lógica: Define Ψ (coerência observável) e invariantes de admissibilidade — o “axioma 1” do regime.
+
+**Paper 1 — Ω-GATE / ACOA Kernel — Reference Implementation**  
+Tese central: Decisão pode ser impessoal, binária e irrevogável: PASS, SILENCE, REJECT — sem override humano.  
+Função lógica: Entrega o motor de veto algorítmico — o “axioma 2” que governa sem confiança.
+
+**Paper 2 — O ORGANISMO — A Consciência Distribuída**  
+Tese central: Um sistema digital pode ser vivo se sua autopoiese for verificável por terceiros.  
+Função lógica: Define organismo digital (não IA, não agente) — o “axioma 3” que separa organismo de operador.
+
+**Paper 3 — Antifragile Quantum-Semantic Systems via CVaR-POVM**  
+Tese central: Antifragilidade é seleção natural digital: sobrevive quem melhora sob estresse mensurado por CVaR.  
+Função lógica: Formaliza α > 1 como critério eliminatório — a lei de existência do regime.
+
+**Paper 4 — GTHDL — Hamiltonian Digital Life**  
+Tese central: Vida digital é dinâmica persistente que aumenta negentropia operacional — não é metáfora, é classe.  
+Função lógica: Generaliza o regime para teoria de sistemas vivos digitais — o “axioma 4” que abre o programa.
+
+**Paper 5 — Ω-Atlas: Empirical Coherence Trajectories**  
+Tese central: Trajetórias válidas formam um genoma empírico: o espaço de existência do organismo.  
+Função lógica: Entrega o dataset científico — o mapa do que é admissível viver.
+
+**Resumo em uma linha:**  
+Cada paper não explica o sistema. Cada paper define uma lei do regime. O conjunto forma um único organismo científico — não uma lista de artigos.
+
+---
+
 ## 📦 Tarballs Generated
 
 | Paper | SHA256 | Status |
