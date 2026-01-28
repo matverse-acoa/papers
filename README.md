@@ -96,6 +96,7 @@ python3 scripts/autopoietic_monitor.py
 ## 📋 Documentation
 
 - [ARXIV_SUBMISSION_GUIDE.md](ARXIV_SUBMISSION_GUIDE.md) - Step-by-step submission guide
+- [REVISAO_TECNICA_CONSOLIDADA.md](REVISAO_TECNICA_CONSOLIDADA.md) - Revisão técnica consolidada da lógica e ordem dos papers
 - [REVIEW_PROFUNDA_GERAL.md](REVIEW_PROFUNDA_GERAL.md) - Technical deep-dive
 - [evidence/index.json](evidence/index.json) - Evidence registry (source of truth)
 
