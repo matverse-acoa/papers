@@ -40,6 +40,21 @@ python deploy_with_tests_and_tracing.py
 | `ENABLE_GITHUB_PUSH` | Habilitar push para GitHub | `true` |
 | `REQUIRE_OMEGA_GATE` | Exigir validação Ω-Gate | `true` |
 
+### Variáveis de ambiente (publishers)
+
+| Variável | Descrição | Padrão |
+| --- | --- | --- |
+| `MATVERSE_ZENODO_TOKEN` | Token da API do Zenodo (executor v2) | Obrigatório para Zenodo |
+| `MATVERSE_ZENODO_SANDBOX` | Usar sandbox do Zenodo | `true` |
+| `MATVERSE_ZENODO_TITLE` | Título do depósito | Data atual |
+| `MATVERSE_ZENODO_DESCRIPTION` | Descrição do depósito | Texto padrão |
+| `MATVERSE_ZENODO_KEYWORDS` | Palavras-chave (CSV) | vazio |
+| `MATVERSE_ZENODO_COMMUNITIES` | Comunidades Zenodo (CSV) | vazio |
+| `MATVERSE_ZENODO_CREATORS` | JSON com autores | usa `MATVERSE_ZENODO_AUTHOR` |
+| `MATVERSE_ZENODO_AUTHOR` | Autor fallback | `MatVerse Team` |
+| `MATVERSE_ZENODO_TIMEOUT` | Timeout das chamadas principais (segundos, inteiro) | `30` |
+| `MATVERSE_ZENODO_UPLOAD_TIMEOUT` | Timeout de upload (segundos, inteiro) | `120` |
+
 ### Configuração via código
 
 ```python
