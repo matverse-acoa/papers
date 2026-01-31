@@ -1,6 +1,6 @@
 # 🧬 MatVerse Autopoietic Papers Ecosystem
 
-**Status**: ✅ **PRODUÇÃO VERIFICÁVEL** | **MMI**: 0.85+ | **All 4 Papers Ready**
+**Status**: ✅ **PRODUÇÃO VERIFICÁVEL** | **MMI**: 0.85+ | 
 
 ## 📊 Quick Status
 
@@ -44,54 +44,48 @@ Função lógica: Entrega o dataset científico — o mapa do que é admissível
 **Resumo em uma linha:**  
 Cada paper não explica o sistema. Cada paper define uma lei do regime. O conjunto forma um único organismo científico — não uma lista de artigos.
 
----
+# MatVerse Papers — Scientific Law Set
 
-## 📦 Tarballs Generated
+Este repositório contém os **papers científicos formais**
+do MatVerse.
 
-| Paper | SHA256 | Status |
-|-------|--------|--------|
-| paper-0-foundations-v1.tar.gz | `197a26ff...` | ✅ Ready |
-| paper-1-coherent-action-spaces-v1.tar.gz | `b8d43b81...` | ✅ Ready |
-| paper-2-acoa-v1.tar.gz | `2fa5e4ec...` | ✅ Ready |
-| paper-3-omega-gate-v1.tar.gz | `92c230d0...` | ✅ Ready |
-
-All in `dist/` directory + `SHA256SUMS.txt`
+Cada paper define uma **lei do regime**.
+Não são ensaios, nem whitepapers.
 
 ---
 
-## 🎯 Next Steps
+## O que este repositório faz
 
-1. **Download**: Get tarballs from GitHub Releases
-2. **Verify**: `sha256sum -c dist/SHA256SUMS.txt`
-3. **Submit to arXiv**: Go to https://arxiv.org/submit
-   - Upload each tarball in order (0→1→2→3)
-   - Fill metadata
-   - Select category: cs.AI
-4. **Record IDs**: Update `evidence/index.json` with arXiv IDs
-5. **Push**: `git push origin main`
+- Formaliza leis científicas
+- Produz evidência reprodutível
+- Mantém rastreabilidade por hash
+- Automatiza validação e empacotamento
 
 ---
 
-## 🤖 Autopoietic System
+## O que este repositório NÃO faz
 
-System self-organizes via:
-- CI/CD automation (.github/workflows/arxiv-pack.yml)
-- Continuous validation (scripts/autopoietic_monitor.py)
-- Evidence registry (evidence/index.json)
-- GitHub Releases (backup + audit)
-
-Every `git push` triggers full pipeline automatically.
+- Não depende de execução em produção
+- Não contém decisões normativas
+- Não é material promocional
 
 ---
 
-## 🔐 Verify System Health
+## Regime Arquitetural
 
-```bash
-python3 scripts/autopoietic_monitor.py
-# Output: ✅ All systems operational!
-```
+**REGIME: SCIENCE**
+
+Os papers são válidos
+mesmo que todo o resto do sistema esteja desligado.
 
 ---
+
+## Garantia Central
+
+Nenhuma afirmação sem:
+- métrica
+- evidência
+- replay
 
 ## 📋 Documentation
 
