@@ -52,6 +52,8 @@ python deploy_with_tests_and_tracing.py
 | `MATVERSE_ZENODO_COMMUNITIES` | Comunidades Zenodo (CSV) | vazio |
 | `MATVERSE_ZENODO_CREATORS` | JSON com autores | usa `MATVERSE_ZENODO_AUTHOR` |
 | `MATVERSE_ZENODO_AUTHOR` | Autor fallback | `MatVerse Team` |
+| `MATVERSE_ZENODO_TIMEOUT` | Timeout das chamadas principais (segundos, inteiro) | `30` |
+| `MATVERSE_ZENODO_UPLOAD_TIMEOUT` | Timeout de upload (segundos, inteiro) | `120` |
 
 ### Configuração via código
 

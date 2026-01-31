@@ -23,67 +23,100 @@ class ZenodoPublisher:
         self.headers = (
             {"Authorization": f"Bearer {self.token}"} if self.token else {}
         )
+        self.timeout = self._int_env("MATVERSE_ZENODO_TIMEOUT", 30)
+        self.upload_timeout = self._int_env("MATVERSE_ZENODO_UPLOAD_TIMEOUT", 120)
 
     def publish(self, files: Iterable[Path], manifest: Dict[str, Any]) -> Dict[str, Any]:
         if not self.token:
             return {"ok": False, "error": "Missing MATVERSE_ZENODO_TOKEN"}
 
         metadata = self._build_metadata(manifest)
-        deposition_id = self._create_deposition(metadata)
+        deposition_id, error = self._create_deposition(metadata)
         if not deposition_id:
-            return {"ok": False, "error": "Failed to create deposition"}
+            return {"ok": False, "error": error or "Failed to create deposition"}
 
-        uploaded = self._upload_files(deposition_id, files)
+        uploaded, error = self._upload_files(deposition_id, files)
         if not uploaded:
             return {
                 "ok": False,
-                "error": "One or more uploads failed",
+                "error": error or "One or more uploads failed",
                 "deposition_id": deposition_id,
             }
 
-        doi = self._publish(deposition_id)
+        doi, error = self._publish(deposition_id)
         if not doi:
             return {
                 "ok": False,
-                "error": "Failed to publish deposition",
+                "error": error or "Failed to publish deposition",
                 "deposition_id": deposition_id,
             }
 
         return {"ok": True, "deposition_id": deposition_id, "doi": doi}
 
-    def _create_deposition(self, metadata: Dict[str, Any]) -> Optional[str]:
-        response = requests.post(
+    def _create_deposition(self, metadata: Dict[str, Any]) -> tuple[Optional[str], Optional[str]]:
+        response, error = self._request(
+            "post",
             f"{self.api_url}/deposit/depositions",
             json=metadata,
-            headers=self.headers,
-            timeout=30,
+            timeout=self.timeout,
         )
-        if response.status_code == 201:
-            return str(response.json().get("id"))
-        return None
+        if error:
+            return None, error
+        if response and response.status_code == 201:
+            return str(response.json().get("id")), None
+        return None, self._response_error(response, "create deposition")
 
-    def _upload_files(self, deposition_id: str, files: Iterable[Path]) -> bool:
+    def _upload_files(
+        self, deposition_id: str, files: Iterable[Path]
+    ) -> tuple[bool, Optional[str]]:
         for file_path in files:
             with file_path.open("rb") as handle:
-                response = requests.put(
+                response, error = self._request(
+                    "put",
                     f"{self.api_url}/deposit/depositions/{deposition_id}/files",
                     files={"file": handle},
-                    headers=self.headers,
-                    timeout=120,
+                    timeout=self.upload_timeout,
                 )
-            if response.status_code not in {200, 201}:
-                return False
-        return True
+            if error:
+                return False, error
+            if response is None or response.status_code not in {200, 201}:
+                return False, self._response_error(response, "upload file")
+        return True, None
 
-    def _publish(self, deposition_id: str) -> Optional[str]:
-        response = requests.post(
+    def _publish(self, deposition_id: str) -> tuple[Optional[str], Optional[str]]:
+        response, error = self._request(
+            "post",
             f"{self.api_url}/deposit/depositions/{deposition_id}/actions/publish",
-            headers=self.headers,
-            timeout=30,
+            timeout=self.timeout,
         )
-        if response.status_code == 202:
-            return response.json().get("doi")
-        return None
+        if error:
+            return None, error
+        if response and response.status_code == 202:
+            return response.json().get("doi"), None
+        return None, self._response_error(response, "publish deposition")
+
+    def _request(
+        self, method: str, url: str, **kwargs: Any
+    ) -> tuple[Optional[requests.Response], Optional[str]]:
+        try:
+            response = requests.request(
+                method,
+                url,
+                headers=self.headers,
+                **kwargs,
+            )
+            return response, None
+        except requests.RequestException as exc:
+            return None, str(exc)
+
+    @staticmethod
+    def _response_error(response: Optional[requests.Response], action: str) -> str:
+        if response is None:
+            return f"Failed to {action}: no response received"
+        return (
+            f"Failed to {action}: HTTP {response.status_code} - "
+            f"{response.text[:500]}"
+        )
 
     def _build_metadata(self, manifest: Dict[str, Any]) -> Dict[str, Any]:
         title = os.getenv(
@@ -148,3 +181,13 @@ class ZenodoPublisher:
         if not creators:
             creators = [{"name": os.getenv("MATVERSE_ZENODO_AUTHOR", "MatVerse Team")}]
         return creators
+
+    @staticmethod
+    def _int_env(name: str, default: int) -> int:
+        raw = os.getenv(name, "").strip()
+        if not raw:
+            return default
+        try:
+            return int(raw)
+        except ValueError:
+            return default
