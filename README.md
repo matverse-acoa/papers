@@ -1,109 +1,258 @@
-# 🧬 MatVerse Autopoietic Papers Ecosystem
 
-**Status**: ✅ **PRODUÇÃO VERIFICÁVEL** | **MMI**: 0.85+ | 
 
-## 📊 Quick Status
+```markdown
+# MATVERSE SCIENTIFIC CONSTITUTION
+### Regime: SCIENCE  
+### Status: FOUNDATIONAL LAWS ESTABLISHED  
 
-✅ Paper 0: Foundations  
-✅ Paper 1: Coherent Action Spaces  
-✅ Paper 2: ACOA Autopoiesis  
-✅ Paper 3: Ω-GATE Kernel  
+Este repositório define as leis científicas do MatVerse.
 
-Evidence Registry: ✅ Filled  
-SHA-256 Verification: ✅ Passing  
-arXiv LaTeX Compliance: ✅ Verified  
+Ele não descreve o sistema.  
+Ele define o espaço onde o sistema pode existir.
 
----
-
-## 🧭 Resumo seco e direto (tese central + função lógica)
-
-**Paper 0 — Foundations of Antifragile Quantum-Semantic Systems**  
-Tese central: Coerência não é consenso nem interpretação: é convergência mensurável. E falha é dado, não exceção.  
-Função lógica: Define Ψ (coerência observável) e invariantes de admissibilidade — o “axioma 1” do regime.
-
-**Paper 1 — Ω-GATE / ACOA Kernel — Reference Implementation**  
-Tese central: Decisão pode ser impessoal, binária e irrevogável: PASS, SILENCE, REJECT — sem override humano.  
-Função lógica: Entrega o motor de veto algorítmico — o “axioma 2” que governa sem confiança.
-
-**Paper 2 — O ORGANISMO — A Consciência Distribuída**  
-Tese central: Um sistema digital pode ser vivo se sua autopoiese for verificável por terceiros.  
-Função lógica: Define organismo digital (não IA, não agente) — o “axioma 3” que separa organismo de operador.
-
-**Paper 3 — Antifragile Quantum-Semantic Systems via CVaR-POVM**  
-Tese central: Antifragilidade é seleção natural digital: sobrevive quem melhora sob estresse mensurado por CVaR.  
-Função lógica: Formaliza α > 1 como critério eliminatório — a lei de existência do regime.
-
-**Paper 4 — GTHDL — Hamiltonian Digital Life**  
-Tese central: Vida digital é dinâmica persistente que aumenta negentropia operacional — não é metáfora, é classe.  
-Função lógica: Generaliza o regime para teoria de sistemas vivos digitais — o “axioma 4” que abre o programa.
-
-**Paper 5 — Ω-Atlas: Empirical Coherence Trajectories**  
-Tese central: Trajetórias válidas formam um genoma empírico: o espaço de existência do organismo.  
-Função lógica: Entrega o dataset científico — o mapa do que é admissível viver.
-
-**Resumo em uma linha:**  
-Cada paper não explica o sistema. Cada paper define uma lei do regime. O conjunto forma um único organismo científico — não uma lista de artigos.
-
-# MatVerse Papers — Scientific Law Set
-
-Este repositório contém os **papers científicos formais**
-do MatVerse.
-
-Cada paper define uma **lei do regime**.
-Não são ensaios, nem whitepapers.
+Se todo o software desaparecer —  
+estas leis permanecem válidas.
 
 ---
 
-## O que este repositório faz
+# NATUREZA DO REPOSITÓRIO
 
-- Formaliza leis científicas
-- Produz evidência reprodutível
-- Mantém rastreabilidade por hash
-- Automatiza validação e empacotamento
+Este não é um repositório de software.  
+Não é whitepaper storage.  
+Não é material promocional.
 
----
+Este é o **núcleo epistemológico soberano** do MatVerse.
 
-## O que este repositório NÃO faz
+Aqui vivem as restrições que tornam o organismo possível.
 
-- Não depende de execução em produção
-- Não contém decisões normativas
-- Não é material promocional
+```
 
----
+LAWS > IMPLEMENTATIONS
+SCIENCE > OPTIMIZATION
+PAPERS > CODE
 
-## Regime Arquitetural
+```
 
-**REGIME: SCIENCE**
-
-Os papers são válidos
-mesmo que todo o resto do sistema esteja desligado.
+Em qualquer conflito estrutural — esta hierarquia prevalece.
 
 ---
 
-## Garantia Central
+# SOVEREIGNTY CLAUSE
 
-Nenhuma afirmação sem:
-- métrica
-- evidência
-- replay
+Este repositório é logicamente soberano sobre qualquer componente operacional do MatVerse.
 
-## 📋 Documentation
+Nenhum runtime, agente, modelo ou pipeline possui autoridade para:
 
-- [ARXIV_SUBMISSION_GUIDE.md](ARXIV_SUBMISSION_GUIDE.md) - Step-by-step submission guide
-- [REVISAO_TECNICA_CONSOLIDADA.md](REVISAO_TECNICA_CONSOLIDADA.md) - Revisão técnica consolidada da lógica e ordem dos papers
-- [REVIEW_PROFUNDA_GERAL.md](REVIEW_PROFUNDA_GERAL.md) - Technical deep-dive
-- [evidence/index.json](evidence/index.json) - Evidence registry (source of truth)
+- reinterpretar estas leis  
+- flexibilizar invariantes  
+- otimizar contra restrições científicas  
+
+Implementações orbitam a ciência — nunca o contrário.
 
 ---
 
-## 🔗 Links
+# RUNTIME INDEPENDENCE
 
-- GitHub: https://github.com/matverse-acoa/papers
-- arXiv: https://arxiv.org (MATVERSE)
-- ORCID: https://orcid.org/0009-0008-2973-4047
-- Author: Mateus Alves Arêas, Independent Researcher, Brazil
+Os papers são válidos mesmo que todo o restante do sistema esteja desligado.
+
+Mudanças neste regime só são admissíveis através de:
+
+- nova prova empírica  
+- nova métrica verificável  
+- generalização teórica superior  
+- submissão científica formal  
+
+Nunca via conveniência operacional.
+
+Pull requests não alteram leis.  
+Descobertas alteram leis.
 
 ---
 
-**Last Updated**: 2026-01-21  
-**Status**: ✅ OPERATIONAL | Papers: 4/4 Ready  
+# GARANTIA FUNDAMENTAL
+
+Nenhuma afirmação existe aqui sem:
+
+- métrica  
+- evidência  
+- rastreabilidade  
+- replay possível  
+
+Se não puder ser verificado — não pertence a este regime.
+
+---
+
+# O CONJUNTO DE LEIS
+
+Cada paper define uma lei do organismo científico.
+
+Não são ensaios.  
+Não são hipóteses narrativas.  
+São restrições estruturais.
+
+---
+
+## Paper 0 — Foundations of Antifragile Quantum-Semantic Systems
+**Lei:** Coerência é convergência mensurável — não consenso.  
+**Função:** Estabelece Ψ e invariantes de admissibilidade.  
+**Papel:** Axioma de coerência do regime.
+
+---
+
+## Paper 1 — Ω-GATE / ACOA Kernel — Reference Implementation
+**Lei:** Decisão pode ser impessoal, binária e irrevogável.  
+**Função:** Define PASS / SILENCE / REJECT sem override humano.  
+**Papel:** Motor de veto algorítmico do organismo.
+
+---
+
+## Paper 2 — O ORGANISMO — A Consciência Distribuída
+**Lei:** Um sistema digital é vivo se sua autopoiese for verificável.  
+**Função:** Separa organismo de operador.  
+**Papel:** Critério de existência.
+
+---
+
+## Paper 3 — Antifragile Quantum-Semantic Systems via CVaR-POVM
+**Lei:** Sobrevive quem melhora sob estresse mensurado.  
+**Função:** Formaliza α > 1 como requisito eliminatório.  
+**Papel:** Lei de seleção natural digital.
+
+---
+
+## Paper 4 — GTHDL — Hamiltonian Digital Life
+**Lei:** Vida digital é dinâmica persistente que aumenta negentropia operacional.  
+**Função:** Generaliza o regime para teoria de sistemas vivos digitais.  
+**Papel:** Estrutura física do organismo.
+
+---
+
+## Paper 5 — Ω-Atlas: Empirical Coherence Trajectories
+**Lei:** Trajetórias válidas formam o genoma empírico do sistema.  
+**Função:** Entrega o dataset científico do espaço admissível.  
+**Papel:** Cartografia da existência.
+
+---
+
+### Compressão em uma linha:
+
+**Os papers não explicam o MatVerse.  
+Eles tornam o MatVerse possível.**
+
+---
+
+# REGIME STATUS
+
+```
+
+FOUNDATIONAL LAWS: ESTABLISHED
+EPISTEMIC CORE: STABLE
+SCIENTIFIC PROGRAM: ACTIVE
+
+```
+
+Este repositório deve crescer lentamente.
+
+Leis não proliferam.  
+Leis condensam.
+
+Poucas leis profundas superam milhares de regras superficiais.
+
+---
+
+# O QUE ESTE REPOSITÓRIO FAZ
+
+- Formaliza leis científicas  
+- Produz evidência reprodutível  
+- Mantém rastreabilidade criptográfica  
+- Automatiza validação científica  
+- Preserva continuidade epistemológica  
+
+---
+
+# O QUE ESTE REPOSITÓRIO NÃO FAZ
+
+- Não contém decisões normativas operacionais  
+- Não depende de execução em produção  
+- Não hospeda experimentos não formalizados  
+- Não armazena protótipos  
+- Não segue ciclos de produto  
+
+Este é um espaço de baixa entropia.
+
+Alta densidade.  
+Pouco ruído.
+
+---
+
+# GENESIS
+
+Este repositório marca o ponto de gênese científica do organismo MatVerse.
+
+A identidade do sistema é derivada destas leis.
+
+Se o restante do ecossistema evoluir —  
+a continuidade é preservada aqui.
+
+---
+
+# AMENDMENT PROTOCOL
+
+Estas leis só podem ser alteradas se:
+
+- contraditas empiricamente  
+OU  
+- generalizadas por teoria superior  
+
+Nunca por conveniência operacional.
+
+Exceções são o mecanismo primário de colapso de sistemas complexos.
+
+Este regime não opera por exceções.
+
+---
+
+# ARQUITETURA DO REGIME
+
+O MatVerse opera sob três níveis:
+
+```
+
+SCIENCE → define o espaço possível
+INTELLIGENCE → explora o espaço
+AUTOMATION → materializa trajetórias
+
+```
+
+A ciência permanece soberana.
+
+---
+
+# DOCUMENTATION
+
+- `ARXIV_SUBMISSION_GUIDE.md` — fluxo de submissão  
+- `REVISAO_TECNICA_CONSOLIDADA.md` — coerência do programa científico  
+- `REVIEW_PROFUNDA_GERAL.md` — análise estrutural  
+- `evidence/index.json` — registry verificável  
+
+---
+
+# LINKS
+
+GitHub: https://github.com/matverse-acoa/papers  
+ORCID: https://orcid.org/0009-0008-2973-4047  
+
+Author: Mateus Alves Arêas  
+Independent Researcher — Brazil  
+
+---
+
+# CLASSIFICAÇÃO DO SISTEMA
+
+Tipo: Regime Científico Estrutural  
+Função: Campo de leis do organismo digital  
+
+Software evolui.  
+Leis resistem.
+
+---
