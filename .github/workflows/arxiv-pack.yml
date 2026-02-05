@@ -125,10 +125,11 @@ jobs:
       - name: ✅ Verify SHA256 checksums
         run: |
           set -euo pipefail
-          if [ ! -f dist/SHA256SUMS.txt ]; then
-            sha256sum dist/*.tar.gz > dist/SHA256SUMS.txt
+          cd dist
+          if [ ! -f SHA256SUMS.txt ]; then
+            sha256sum *.tar.gz > SHA256SUMS.txt
           fi
-          sha256sum -c dist/SHA256SUMS.txt
+          sha256sum -c SHA256SUMS.txt
 
       - name: 📋 Build summary
         run: |
