@@ -26,3 +26,19 @@ What this guarantees:
 - Persist `ledger.jsonl` and `organism.key`
 - Replicate `snapshots/` to external storage
 - Run `python replay.py` after restarts or during audits
+
+
+## Public read-only status API
+
+Expose a minimal observer surface for external verifiers:
+
+```bash
+python public_status_api.py --host 0.0.0.0 --port 8787
+```
+
+Endpoints:
+
+- `/latest-block` → full latest block payload
+- `/ledger-head` → current height + hash + timestamp
+- `/psi` → latest psi signal
+- `/replay-status` → whether replay checks are ready to run
