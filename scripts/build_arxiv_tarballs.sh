@@ -2,7 +2,7 @@
 # Build all papers for arXiv (compile + package)
 # Usage: ./build_arxiv_tarballs.sh
 
-set -e
+set -euxo pipefail
 
 ROOT_DIR="$(pwd)"
 
@@ -22,7 +22,7 @@ echo ""
 # Verificar LaTeX disponível
 if ! command -v pdflatex &> /dev/null; then
     echo "⚠️  LaTeX não encontrado."
-    if [ "${ALLOW_SOURCE_ONLY}" = "1" ]; then
+    if [ "${ALLOW_SOURCE_ONLY:-}" = "1" ]; then
         echo "   ALLOW_SOURCE_ONLY=1 set: criando tarballs apenas com fontes (não verificados)"
     else
         echo "   Para permitir tarballs apenas com fontes exporte: ALLOW_SOURCE_ONLY=1"
@@ -49,8 +49,31 @@ for i in "${!PAPERS[@]}"; do
     if command -v pdflatex &> /dev/null && [ -f "$PAPER_PATH/paper.tex" ]; then
         pushd "$PAPER_PATH" > /dev/null
         echo "   Compilando TeX (preferindo latexmk)..."
+        echo "========== CONTEXT =========="
+        pwd
+        ls -la
+        echo "============================="
+        latexmk -C || true
+
         if command -v latexmk &> /dev/null; then
-            latexmk -pdf -silent paper.tex
+            if ! latexmk -pdf -file-line-error -interaction=nonstopmode paper.tex; then
+                echo ""
+                echo "=========== LATEX FAILURE ==========="
+                echo ""
+
+                if [ -f paper.log ]; then
+                    echo "------ FIRST 120 LINES ------"
+                    head -120 paper.log
+                    echo ""
+
+                    echo "------ ERROR LINES ------"
+                    grep -n "!" paper.log | head -20 || true
+                else
+                    echo "paper.log not found"
+                fi
+
+                exit 1
+            fi
         else
             pdflatex -interaction=nonstopmode paper.tex
             # tentar BibTeX se houver .aux/bib
