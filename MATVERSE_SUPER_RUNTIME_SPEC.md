@@ -1,24 +1,26 @@
 # MATVERSE SUPER RUNTIME SPEC
 
-Status: Draft v0.1  
-Scope: Canonical specification for a sovereign, self-sustaining execution field.
+Status: Draft v0.2  
+Scope: Canonical specification for a sovereign, secure, continuously verifiable, self-sustaining execution field.
 
 ---
 
 ## 1. Canonical Definition
 
-A **Super Runtime** is a governed execution field able to **rebuild, validate, and continue operations** after severe substrate failures, without dependence on a single machine, single cloud, or human operator.
+A **Super Runtime** is a governed execution field able to **rebuild, validate, secure, observe, and continue operations** after severe substrate failures, without dependence on a single machine, single cloud, or human operator.
 
 Formally:
 
 - Let `P(t)` be perturbation intensity over time.
 - Let `R(t)` be system recovery and adaptation capacity.
+- Let `S(t)` be security posture under active threat.
+- Let `O(t)` be observability coverage and signal integrity.
 - A runtime qualifies as *super* only when operational continuity is preserved under bounded extreme perturbation:
 
-`∀t, if P(t) ≤ P_max, then continuity(t) = 1 by autonomous mechanisms.`
+`∀t, if P(t) ≤ P_max, then continuity(t) = 1 by autonomous mechanisms, with S(t) >= S_min and O(t) >= O_min.`
 
 The practical marker is not nominal resilience.  
-The marker is **guaranteed continuity**.
+The marker is **guaranteed continuity with verifiable security and observability**.
 
 ---
 
@@ -36,6 +38,8 @@ Sufficient criterion:
 - continuity is maintained,
 - invariants remain enforceable,
 - recovery is autonomous,
+- security boundaries hold under fault and attack,
+- observability remains reliable during degradation,
 - evidence of correctness is generated.
 
 ---
@@ -120,7 +124,76 @@ This is the threshold between software stack and persistent computational organi
 
 ---
 
-## 4. Five Laws of the Super Runtime
+## 4. Security Baseline (Secure Runtime)
+
+A super runtime is invalid if security is optional.
+
+Mandatory controls:
+
+- identity-based access with least privilege,
+- signed artifacts and provenance attestations,
+- secret isolation with automatic rotation,
+- policy-as-code for admission and execution,
+- cryptographic evidence for critical transitions.
+
+Fail-closed security rule:
+
+- if trust chain validation fails, execution must stop.
+
+---
+
+## 5. Continuous Operation Model (Continuous Runtime)
+
+Continuity is not periodic uptime; continuity is invariant-preserving flow.
+
+Required continuous mechanisms:
+
+- active-active or active-standby critical path,
+- health-probe gated traffic shift,
+- autonomous state reconciliation,
+- bounded RTO/RPO objectives,
+- scheduled chaos drills with recorded outcomes.
+
+A runtime is only continuous when continuity is demonstrated under controlled perturbation.
+
+---
+
+## 6. Runtime Finalization Protocol (Finalize Runtime)
+
+Finalization defines when a runtime transition is *complete and admissible*.
+
+A release/runtime state is finalized only if all hold:
+
+1. determinism checks pass,
+2. governance checks pass,
+3. security chain is valid,
+4. continuity simulation passes,
+5. observability evidence is complete,
+6. ledger receives final signed checkpoint.
+
+Without finalization, deployment state is provisional.
+
+---
+
+## 7. Observability Contract
+
+Observability is a first-class invariant.
+
+Minimum telemetry contract:
+
+- structured logs with correlation IDs,
+- core metrics for latency/errors/saturation/recovery,
+- distributed traces across critical paths,
+- immutable event trail for governance decisions,
+- alerting with severity routing and auto-remediation hooks.
+
+Observability failure handling:
+
+- degraded telemetry in critical paths must trigger fail-closed or safe-mode execution.
+
+---
+
+## 8. Five Laws of the Super Runtime
 
 ### Law 1 — Recreation
 Everything must be reconstructible from zero.
@@ -139,7 +212,7 @@ Local failures must not collapse global operation.
 
 ---
 
-## 5. Admissibility Checklist (Pass/Fail)
+## 9. Admissibility Checklist (Pass/Fail)
 
 A runtime is admissible as *super* only if all items pass:
 
@@ -148,12 +221,15 @@ A runtime is admissible as *super* only if all items pass:
 - [ ] Determinism checks are automated in CI/CD.
 - [ ] Governance constraints are hard-enforced by executor.
 - [ ] Immune responses are automatic and tested.
+- [ ] Security trust chain is validated end-to-end.
+- [ ] Observability contract is active and audited.
 - [ ] Full autonomous rebuild/recovery drill is reproducible.
+- [ ] Runtime finalization protocol emits signed checkpoint.
 - [ ] Evidence ledger captures all critical transitions.
 
 ---
 
-## 6. Minimal Metrics
+## 10. Minimal Metrics
 
 To evaluate maturity, track at least:
 
@@ -161,25 +237,30 @@ To evaluate maturity, track at least:
 - `CCR` (Continuity Compliance Rate),
 - `DRI` (Deterministic Reproducibility Index),
 - `GFR` (Governance Failure Rejection rate),
-- `AIR` (Autonomous Incident Response rate).
+- `AIR` (Autonomous Incident Response rate),
+- `SCI` (Security Chain Integrity),
+- `OCR` (Observability Coverage Ratio),
+- `FPR` (Finalization Pass Rate).
 
 A runtime should not be labeled *super* without quantitative evidence over time.
 
 ---
 
-## 7. Transitional Roadmap (From Robust to Super)
+## 11. Transitional Roadmap (From Robust to Super)
 
 1. **Freeze environment** via canonical image and digests.
 2. **Enforce determinism** at artifact level.
 3. **Harden governance** as fail-closed execution constraints.
-4. **Automate immune responses** for mutation containment.
-5. **Prove autopoiesis** with operator-free recovery drills.
+4. **Implement secure runtime baseline** (identity, signing, provenance, policy).
+5. **Implement observability contract** as a non-optional invariant.
+6. **Automate immune responses** for mutation containment.
+7. **Prove autopoiesis + finalization** with operator-free recovery drills.
 
 Expected progression: months, not years, when architectural decisions are explicit and invariant-driven.
 
 ---
 
-## 8. Non-Goals
+## 12. Non-Goals
 
 This spec does not prescribe:
 
@@ -192,7 +273,8 @@ It defines operational sovereignty constraints only.
 
 ---
 
-## 9. Versioning
+## 13. Versioning
 
 - `v0.1` — initial formalization.
+- `v0.2` — secure runtime, continuous operation model, finalization protocol, and observability contract.
 - Future versions should include benchmark suites and empirical thresholds per metric.
