@@ -1,0 +1,7 @@
+{
+  "genesis_time": "2026-02-05T00:00:00Z",
+  "organism": "MatVerse",
+  "version": "1.0",
+  "hash_algorithm": "sha3_256",
+  "constitutional_mode": "hard"
+}
