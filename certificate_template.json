@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schema.matverse.science/certificate/v1",
+  "certificate_type": "fortified_publication",
+  "version": "11.0",
+  "artifact": {
+    "id": "{{artifact_id}}",
+    "title": "{{title}}",
+    "authors": "{{authors}}",
+    "publication_date": "{{timestamp}}"
+  },
+  "validation": {
+    "mavk_scores": {
+      "psi": "{{psi_score}}",
+      "omega": "{{omega_score}}",
+      "gaming_resistance": "{{gaming_resistance}}",
+      "hallucination_risk": "{{hallucination_risk}}",
+      "thresholds_met": true
+    },
+    "conformity_audit": {
+      "passed": true,
+      "gap_count": 0,
+      "invariants_checked": 9
+    }
+  },
+  "evidence": {
+    "ohash": "{{ohash}}",
+    "merkle_root": "{{merkle_root}}",
+    "ledger_entry_id": "{{ledger_entry_id}}",
+    "polygon_anchor": "{{polygon_tx_hash}}"
+  },
+  "publication": {
+    "platforms": ["zenodo", "github", "huggingface"],
+    "dois": ["10.5281/zenodo.1234567"],
+    "urls": {
+      "zenodo": "https://zenodo.org/record/1234567",
+      "github": "https://github.com/matverse-science/paper-2026-001",
+      "huggingface": "https://huggingface.co/spaces/matverse/demo-2026-001"
+    }
+  },
+  "verification": {
+    "merkle_proof_url": "https://explorer.matverse.science/proof/{{ledger_entry_id}}",
+    "ohash_verification_url": "https://verify.matverse.science/ohash/{{ohash}}",
+    "blockchain_explorer": "https://polygonscan.com/tx/{{polygon_tx_hash}}"
+  }
+}
