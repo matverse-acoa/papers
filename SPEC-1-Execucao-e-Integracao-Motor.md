@@ -99,6 +99,13 @@ scripts/manage_release.sh v11.0.0 "MatVerse v11.0.0"
 
 Destino: `git@github.com:matverse-acoa/papers.git`
 
+
+### Passo A0 — configurar remoto automaticamente
+
+```bash
+scripts/setup_remote_repo.sh origin git@github.com:matverse-acoa/papers.git
+```
+
 ### Passo A — clonar e preparar
 
 ```bash
