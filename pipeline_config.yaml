@@ -1,0 +1,38 @@
+fortified_publication:
+  version: "11.0"
+  mavk_thresholds:
+    psi_min: 0.85
+    omega_min: 0.80
+    gaming_resistance_min: 0.75
+    hallucination_risk_max: 0.15
+    truth_anchoring_min: 0.70
+  platforms:
+    zenodo:
+      enabled: true
+      community: "matverse"
+      publish: true
+      sandbox: false
+    github:
+      enabled: true
+      organization: "matverse-science"
+      auto_tag: true
+      release_notes: true
+    huggingface:
+      enabled: true
+      space_type: "gradio"
+      hardware: "cpu-basic"
+      private: false
+    arxiv:
+      enabled: true
+      category: "cs.AI"
+      license: "arxiv"
+  evidence:
+    require_merkle_proof: true
+    require_ohash: true
+    require_polygon_anchor: false
+    peer_review_min: 2
+    auto_generate_doi: true
+  compliance:
+    gdpr_compliant: true
+    open_access: true
+    embargo_period: 0
