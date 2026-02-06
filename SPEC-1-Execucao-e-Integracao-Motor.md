@@ -97,21 +97,20 @@ scripts/manage_release.sh v11.0.0 "MatVerse v11.0.0"
 
 ## Integração com repo remoto (papers.git)
 
-Destino: `git@github.com:matverse-acoa/papers.git`
+Destino preferencial: `https://github.com/matverse-acoa/papers` (ou SSH `git@github.com:matverse-acoa/papers.git`).
 
 
 ### Passo A0 — configurar remoto automaticamente
 
 ```bash
-scripts/setup_remote_repo.sh origin git@github.com:matverse-acoa/papers.git
+scripts/setup_remote_repo.sh origin https://github.com/matverse-acoa/papers
 ```
 
 ### Passo A — clonar e preparar
 
 ```bash
-ssh -T git@github.com
 cd ~
-git clone git@github.com:matverse-acoa/papers.git matverse-papers
+git clone https://github.com/matverse-acoa/papers.git matverse-papers
 cd matverse-papers
 python -m venv .venv
 source .venv/bin/activate
