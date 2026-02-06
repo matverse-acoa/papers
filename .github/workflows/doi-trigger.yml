@@ -1,0 +1,13 @@
+name: DOI Trigger
+
+on:
+  repository_dispatch:
+    types: [doi_trigger]
+
+jobs:
+  rerun:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "Received DOI trigger for tx_id=${{ github.event.client_payload.tx_id }} doi=${{ github.event.client_payload.doi }}"
