@@ -4,6 +4,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from matverse_fortified_publisher import run_fortified_publish
+from matverse_runtime.loop_controller import loop_controller
 from matverse_runtime.pbse import validate_tx_id
 
 router = APIRouter()
@@ -26,9 +27,16 @@ def publish_fortified(req: PublishRequest) -> dict[str, str]:
         files=req.files,
     )
 
-    return {
+    response = {
         "doi": result["doi"],
         "ipfs": result["ipfs"],
         "evidence_hash": result["evidence_hash"],
         "repo_commit": result["commit"],
     }
+    loop_controller.register_publish(
+        tx_id=req.tx_id,
+        doi=response["doi"],
+        evidence_hash=response["evidence_hash"],
+        commit=response["repo_commit"],
+    )
+    return response
