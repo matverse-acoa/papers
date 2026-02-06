@@ -1,0 +1,14 @@
+name: Replay Auto
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "Replay automation ready. Triggering repository_dispatch matverse_replay if configured."
